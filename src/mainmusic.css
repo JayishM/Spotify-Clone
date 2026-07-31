@@ -1,0 +1,44 @@
+.sections .btn{
+    background-color: rgb(43, 43, 43);
+    border:0px;
+}
+.cards-section h3{
+    color: white;
+}
+.spotify-card{
+    width:180px;
+    /*background:#181818;*/
+    border-radius:10px;
+    padding:15px;
+    cursor:pointer;
+    transition:0.25s ease;
+}
+
+.spotify-card:hover{
+    /*background:#282828;*/
+}
+
+.spotify-card img{
+    width:100%;
+    aspect-ratio:1;
+    object-fit:cover;
+    border-radius:8px;
+}
+
+.spotify-card-body{
+    margin-top:12px;
+}
+
+.spotify-card-body h6{
+    color:white;
+    margin:0;
+    font-size:16px;
+    font-weight:600;
+}
+
+.spotify-card-body p{
+    color:#b3b3b3;
+    font-size:14px;
+    margin-top:6px;
+    line-height:1.4;
+}
