@@ -1,0 +1,40 @@
+.sidemenu-body .btn{
+    background-color: rgb(43, 43, 43);
+    border:0px;
+}
+.playlist-card{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.playlist-card:hover{
+    background-color: #242424;
+}
+
+.playlist-card img{
+    width: 64px;
+    height: 64px;
+    border-radius: 6px;
+    object-fit: cover;
+}
+
+.playlist-info h5{
+    color: white;
+    margin: 0;
+    font-size: 1.4rem;
+}
+
+.playlist-info p{
+    color: #b3b3b3;
+    margin: 4px 0 0;
+    font-size: 0.95rem;
+}
+
+.playlist-info i{
+    color: #1db954;
+}

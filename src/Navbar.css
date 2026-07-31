@@ -1,0 +1,44 @@
+body {
+    background-color: #000;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.navbar {
+    background-color: #000;
+    color: white;
+}
+
+.navbar-left i,
+.navbar-right i {
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.navbar-left i:hover,
+.navbar-right i:hover {
+    color: #1DB954;
+    transform: scale(1.1);
+}
+
+.navbar-search .input-group-text {
+    background-color: #1f1f1f;
+    border: none;
+    color: white;
+}
+
+.navbar-search .form-control {
+    background-color: #1f1f1f;
+    border: none;
+    color: white;
+}
+
+.navbar-search .form-control::placeholder {
+    color: #b3b3b3;
+}
+
+.navbar-search .form-control:focus {
+    background-color: #1f1f1f;
+    color: white;
+    box-shadow: none;
+}
