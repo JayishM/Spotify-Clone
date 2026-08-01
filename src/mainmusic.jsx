@@ -5,8 +5,7 @@ import "./mainmusic.css";
 import { useEffect, useState } from "react";
 import { getSongMetadata } from "./musicMetadata";
 
-import TumHoTohMusic from "./assets/tumhoto.mp3";
-import iloveyoumusic from "./assets/iloveyou.mp3";
+
 
 function MainMusic({ setCurrentSong }) {
 
@@ -16,44 +15,31 @@ function MainMusic({ setCurrentSong }) {
 
         async function loadSongs() {
 
-            const files = [
-                TumHoTohMusic,
-                iloveyoumusic
-            ];
+            const response = await fetch("http://localhost:3000/api/songs");
+            const files = await response.json();
 
             const loadedSongs = [];
-
-            for (const audio of files) {
-
+            for (const song of files) {
                 try {
-
-                    const metadata = await getSongMetadata(audio);
-
+                    const metadata = await getSongMetadata(song.url);
                     loadedSongs.push({
-                        title: metadata.title || "Unknown Title",
+                        title: metadata.title || song.title,
                         artist: metadata.artist || "Unknown Artist",
                         image: metadata.image,
-                        audio: audio
+                        audio: song.url
                     });
-
                 }
                 catch (err) {
-
                     console.error(err);
-
                     loadedSongs.push({
-                        title: "Unknown Title",
+                        title: song.title,
                         artist: "Unknown Artist",
                         image: null,
-                        audio: audio
+                        audio: song.url
                     });
-
                 }
-
             }
-
             setSongs(loadedSongs);
-
         }
 
         loadSongs();
