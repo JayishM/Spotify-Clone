@@ -46,8 +46,23 @@ function MainMusic({ setCurrentSong }) {
 
     }, []);
 
-    function playSong(song) {
+    async function playSong(song) {
         setCurrentSong(song);
+        await fetch("http://localhost:3000/jam", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                title: song.title,
+                artist: song.artist,
+                image: song.image,
+                song: song.audio,
+                isPlaying: true,
+                currentTime: 0
+            })
+        });
+
     }
     return (
     <div className="mainmusic">
@@ -88,7 +103,7 @@ function MainMusic({ setCurrentSong }) {
                     </h4>
                 </div>
 
-                <div className="d-flex">
+                <div className="songs-row">
 
                     {songs.map((song, index) => (
 
@@ -139,7 +154,7 @@ function MainMusic({ setCurrentSong }) {
                     </h4>
                 </div>
 
-                <div className="d-flex">
+                <div className="songs-row">
 
                     {songs.map((song, index) => (
 
@@ -190,7 +205,7 @@ function MainMusic({ setCurrentSong }) {
                     </h4>
                 </div>
 
-                <div className="d-flex">
+                <div className="songs-row">
 
                     {songs.map((song, index) => (
 

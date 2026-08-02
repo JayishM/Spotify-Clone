@@ -10,10 +10,37 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = 3000;
 
+app.use(express.json());
+
+let jamState = {
+    song: null,
+    isPlaying: false,
+    currentTime: 0,
+    updatedAt: Date.now()
+};
+
 app.use(cors());
 
 // Serve mp3 files
 app.use("/songs", express.static(path.join(__dirname, "songs")));
+
+//Jam route to get the current state of the jam session
+app.get("/jam", (req, res) => {
+    res.json(jamState);
+});
+
+app.post("/jam", (req, res) => {
+
+    jamState = {
+        ...req.body,
+        updatedAt: Date.now()
+    };
+
+    res.json({
+        success: true
+    });
+
+});
 
 // Home Route
 app.get("/", (req, res) => {

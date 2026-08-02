@@ -2,22 +2,26 @@
     background-color: rgb(43, 43, 43);
     border:0px;
 }
+.cards-section{
+    margin-bottom:50px;
+}
 .cards-section h3{
     color: white;
 }
 .spotify-card{
-    width:180px;
-    /*background:#181818;*/
-    border-radius:10px;
-    padding:15px;
+    min-width:210px;
+    max-width:210px;
+    flex:0 0 210px;
+
+    padding:14px;
+    border-radius:8px;
     cursor:pointer;
-    transition:0.25s ease;
+    transition:0.2s;
 }
 
 .spotify-card:hover{
-    /*background:#282828;*/
+    background:#1d1d1d;
 }
-
 .spotify-card img{
     width:100%;
     aspect-ratio:1;
@@ -30,15 +34,42 @@
 }
 
 .spotify-card-body h6{
+    margin-top:12px;
     color:white;
-    margin:0;
     font-size:16px;
-    font-weight:600;
+    font-weight:700;
+
+    display:-webkit-box;
+    -webkit-line-clamp:2;
+    -webkit-box-orient:vertical;
+    overflow:hidden;
 }
 
 .spotify-card-body p{
-    color:#b3b3b3;
-    font-size:14px;
     margin-top:6px;
-    line-height:1.4;
+    color:#b3b3b3;
+    font-size:13px;
+    line-height:18px;
+
+    display:-webkit-box;
+    -webkit-line-clamp:2;
+    -webkit-box-orient:vertical;
+    overflow:hidden;
+}
+.songs-row{
+    display:flex;
+    gap:24px;
+    overflow-x:auto;
+    overflow-y:hidden;
+    flex-wrap:nowrap;
+    scroll-behavior:smooth;
+    scrollbar-width:none;
+    padding-bottom:10px;
+}
+.songs-row::-webkit-scrollbar{
+    display:none;
+}
+.mainmusic{
+    flex:1;
+    overflow-x:hidden;
 }

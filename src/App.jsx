@@ -9,14 +9,14 @@ function App(){
     <div className="App">
       <Navbar />
       <div className="row">
-        <div className="col-3">
+        <div className="col-2">
           <SideMenu />
         </div>
-        <div className="col-9">
+        <div className="col-10">
           <MainMusic setCurrentSong={setCurrentSong} />
         </div>
       </div>
-      <PlaybackControl currentSong={currentSong} />
+      <PlaybackControl currentSong={currentSong} setCurrentSong={setCurrentSong}/>
     </div>
   )
 }

@@ -4,20 +4,62 @@ import "./playbackcontrol.css";
 
 import { useEffect, useRef, useState } from "react";
 
-function PlaybackControl({ currentSong }) {
+function PlaybackControl({ currentSong, setCurrentSong }) {
+        const audioRef = useRef(null);
+        const [isPlaying, setIsPlaying] = useState(false);
+        const [lastJamUpdate, setLastJamUpdate] = useState(0);
 
-    const audioRef = useRef(null);
-    const [isPlaying, setIsPlaying] = useState(false);
+        useEffect(() => {
+            if (!audioRef.current || !currentSong) return;
 
-    useEffect(() => {
-        if (!audioRef.current || !currentSong) return;
+            audioRef.current.load();
+            audioRef.current.play();
+            setIsPlaying(true);
 
-        audioRef.current.load();
-        audioRef.current.play();
-        setIsPlaying(true);
+        }, [currentSong]);
+        useEffect(() => {
 
-    }, [currentSong]);
+            console.log("Polling started");
 
+            const interval = setInterval(async () => {
+
+                try {
+
+                    const response = await fetch("http://localhost:3000/jam");
+                    const jam = await response.json();
+
+                    console.log("Jam:", jam);
+
+                    if (
+                        jam.updatedAt > lastJamUpdate &&
+                        jam.song &&
+                        jam.song !== currentSong?.audio
+                    ) {
+
+                        console.log("Updating song from jam");
+
+                        setLastJamUpdate(jam.updatedAt);
+
+                        setCurrentSong({
+                            title: jam.title,
+                            artist: jam.artist,
+                            image: jam.image,
+                            audio: jam.song
+                        });
+
+                    }
+
+                } catch (err) {
+
+                    console.error(err);
+
+                }
+
+            }, 1000);
+
+            return () => clearInterval(interval);
+
+        }, [lastJamUpdate, currentSong, setCurrentSong]);
     const togglePlay = () => {
 
         if (!audioRef.current || !currentSong) return;
